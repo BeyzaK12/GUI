@@ -33,13 +33,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("AdapterButtonListener","Clicked");
-                Intent intent = new Intent(MainActivity.this,ArrayAdapterActivity.class);
+                Intent intent = new Intent(MainActivity.this,CustomAdapterActivity.class);
                 startActivity(intent);
             }
         };
 
-
-        customAdapterButton.setOnClickListener(listener);
+        customAdapterButton.setOnClickListener(listener2);
 
 
     }
