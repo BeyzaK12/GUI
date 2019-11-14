@@ -2,16 +2,14 @@ package com.example.moviebrowser;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.moviebrowser.dummy.DummyContent;
-import com.example.moviebrowser.dummy.DummyContent.DummyItem;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +18,7 @@ import java.util.List;
 /**
  * A fragment representing a list of Items.
  * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
+ * Activities containing this fragment MUST implement the {@link OnMovieSelectionListener}
  * interface.
  */
 public class MovieFragment extends Fragment {
@@ -58,6 +56,10 @@ public class MovieFragment extends Fragment {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
 
+        if (getArguments() != null) {
+            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+        }
+
         movies.add(new Movie("The Shawshank Redemption","Frank Darabont",1994,
                 Arrays.asList(new String[]{"Tim Robbins", "Morgan Freeman", "Bob Gunton"}),
                 "Two imprisoned men bond over a number of years, " +
@@ -71,6 +73,7 @@ public class MovieFragment extends Fragment {
                 Arrays.asList(new String[]{"John Travolta", "Uma Thurman", "Samuel L. Jackson"}),
                 "The aging patriarch of an organized crime dynasty transfers control of " +
                         "his clandestine empire to his reluctant son."));
+
     }
 
     @Override
@@ -121,7 +124,6 @@ public class MovieFragment extends Fragment {
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnMovieSelectionListener {
-        // TODO: Update argument type and name
         void movieSelected(Movie item);
     }
 }

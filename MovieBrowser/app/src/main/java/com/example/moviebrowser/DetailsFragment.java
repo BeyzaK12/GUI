@@ -1,10 +1,6 @@
 package com.example.moviebrowser;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +9,12 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 
 /**
  * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link DetailsFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
  * Use the {@link DetailsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
@@ -27,15 +23,7 @@ public class DetailsFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "movie";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     Movie movie;
-
-    private MovieFragment.OnMovieSelectionListener mListener;
-
-
 
     public DetailsFragment() {
         // Required empty public constructor
@@ -44,6 +32,7 @@ public class DetailsFragment extends Fragment {
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
+     *
      * @return A new instance of fragment DetailsFragment.
      */
     // TODO: Rename and change types and number of parameters
@@ -59,7 +48,7 @@ public class DetailsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            movie = (Movie)getArguments().getSerializable(ARG_PARAM1);
+            movie = (Movie) getArguments().getSerializable(ARG_PARAM1);
         }
     }
 
@@ -70,58 +59,31 @@ public class DetailsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_details, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Movie movie) {
-        if (mListener != null) {
-            mListener.movieSelected(movie);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof MovieFragment.OnMovieSelectionListener) {
-            mListener = (MovieFragment.OnMovieSelectionListener) context;
-        } else {
-            throw new RuntimeException(context.toString() + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
-    }
-
-    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        setMovie(movie, view);
+    }
+
+    public void setMovie(Movie movie, View view) {
+
+        this.movie = movie;
+
         TextView txtName = (TextView)view.findViewById(R.id.txtMovieName);
         txtName.setText(movie.getName());
+
         TextView txtYear = (TextView)view.findViewById(R.id.txtYear);
         txtYear.setText(Integer.toString(movie.getYear()));
+
         TextView txtDirector = (TextView)view.findViewById(R.id.txtDirector);
         txtDirector.setText(movie.getDirector());
+
         TextView txtDescription = (EditText)view.findViewById(R.id.txtDescription);
         txtDescription.setText(movie.getDescription());
         txtDescription.setEnabled(false);
+
         ListView listView = (ListView) view.findViewById(R.id.lstStars);
         listView.setAdapter(new ArrayAdapter<String>(getActivity(), R.layout.array_adapter,
                 movie.getStars().toArray(new String[1])));
     }
+
 }

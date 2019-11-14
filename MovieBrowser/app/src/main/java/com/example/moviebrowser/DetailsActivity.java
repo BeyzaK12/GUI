@@ -1,8 +1,9 @@
 package com.example.moviebrowser;
 
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 public class DetailsActivity extends AppCompatActivity {
 
@@ -11,14 +12,12 @@ public class DetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details);
 
-        Movie movie = (Movie)getIntent().getSerializableExtra("movie");
-
+        Movie movie = (Movie) getIntent().getSerializableExtra("movie");
 
         FragmentTransaction fts = getSupportFragmentManager().beginTransaction();
-        DetailsFragment df = DetailsFragment.newInstance(movie);
+        DetailsFragment detailsFragment = DetailsFragment.newInstance(movie);
 
-        fts.add(R.id.container,df);
+        fts.add(R.id.container, detailsFragment);
         fts.commit();
-
     }
 }

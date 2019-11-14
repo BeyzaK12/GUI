@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Movie implements Serializable {
-
     private String name;
     private String director;
     private int year;
@@ -19,6 +18,8 @@ public class Movie implements Serializable {
         this.stars = stars;
         this.description = description;
     }
+
+    //Getters and Setters
 
     public String getName() {
         return name;
@@ -59,4 +60,5 @@ public class Movie implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
+
 }
