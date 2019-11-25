@@ -37,6 +37,7 @@ class Presenter implements CalculatorListener, View.OnClickListener {
             if(isFirstDigit){
                 calculatorView.setNumber(symbol);
                 isFirstDigit =false;
+                operatorExpected = true;
             }else{
                 calculatorView.setNumber(calculatorView.getNumber()+symbol);
             }
@@ -44,12 +45,8 @@ class Presenter implements CalculatorListener, View.OnClickListener {
 
     }
 
-    public void onResultCalculator(int result) {
-        calculatorView.setNumber(result+"");
-    }
-
     @Override
     public void onResultCalculated(int result) {
-
+        calculatorView.setNumber(result + "");
     }
 }

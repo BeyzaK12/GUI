@@ -27,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements CalculatorView {
             for (int j = 0; j < row.getChildCount(); j++){
                 Button btn = (Button)row.getChildAt(j);
                 btn.setOnClickListener(presenter);
-
             }
         }
     }

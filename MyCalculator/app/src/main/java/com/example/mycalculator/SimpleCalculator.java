@@ -33,5 +33,6 @@ class SimpleCalculator {
     public void reset() {
         operand1 = null;
         operand2 = null;
+        operator = null;
     }
 }
